@@ -1,3 +1,5 @@
+const { colors } = require("prompt");
+
 let prompt = require(`prompt-sync`)()
 const candidats = [
   { cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "Indépendant", age: 40,
@@ -21,6 +23,28 @@ const candidats = [
   { cin: "ST012345", nom: "Fassi", prenom: "Khadija", partiPolitique: "PAM", age: 31,
     electeurs: [] },
 ];
+
+
+
+
+const couleurs = {
+  reset: "\x1b[0m",     
+  rouge: "\x1b[31m",    
+  vert: "\x1b[32m",     
+  jaune: "\x1b[33m",    
+  bleu: "\x1b[34m",     
+  magenta: "\x1b[35m",  
+  cyan: "\x1b[36m",     
+  gras: "\x1b[1m",      
+};
+
+
+function colorer(texte, code) {
+  return code + texte + couleurs.reset;
+}
+
+
+
 while (true) {
     console.log(`************************************************************
 ** Gestion des Élections et Listes Électorales au Maroc ***
