@@ -22,9 +22,9 @@ const candidats = [
     electeurs: [] },
 ];
 while (true) {
-    console.log(`============================================================
-== Gestion des Élections et Listes Électorales au Maroc ===
-============================================================`)
+    console.log(`************************************************************
+** Gestion des Élections et Listes Électorales au Maroc ***
+************************************************************`)
     console.log(`         1. Ajouter un nouveau candidat
          2. Ajouter plusieurs candidats à la fois
          3. Afficher la liste des candidats
@@ -34,9 +34,9 @@ while (true) {
          7. Rechercher des candidats
          8. Statistiques de l'élection
          9. Exit`)
-    let ask = Number(prompt("your choice : "))
+    let ask = Number(prompt("PLEASE SELECT AN OPTION FROM THE MENU (1-9) : "))
     if (ask === 9) {
-        console.log("good by ")
+        console.log("IT WAS GOOD SEEING YOU GOOD-BYE...! ")
         break
     } else if (ask === 1) {
         console.clear()
@@ -61,20 +61,20 @@ while (true) {
         console.clear()
         Stati()
     } else {
-        console.log("that is not option")
+        console.log("PLEASE ENTER A VALID OPTON !!!")
     }
 }
 function ajouter() {
-    let ask2 = prompt("your cin :")
-    let ask3 = prompt("le nom :")
-    let ask4 = prompt("le prenom  :")
-    let ask5 = prompt("Parti politique :")
-    let ask6 = Number(prompt("your Age :"))
+    let ask2 = prompt("ENTER YOUR OFFICIAL CIN :")
+    let ask3 = prompt("PLEASE ENTER YOUR FIRST NAME :")
+    let ask4 = prompt("PLEASE ENTER YOUR FAMILY NAME  :")
+    let ask5 = prompt("ENTER YOUR POLITIC ORIENTATION :")
+    let ask6 = Number(prompt("ENTER YOUR AGE (MUST BE GREATER THAN 18 IN ORDER TO LEGALLY VOTE !) :"))
     let s = false
     if (ask6 > 18) {
         for (let i = 0; i < candidats.length; i++) {
             if (ask2 === candidats[i].cin) {
-                console.log("you cant creat new cant you have ol ready")
+                console.log("CAN'T ADD THIS CANDIDAT TO THE LIST BECAUSE IT EXISTS ALREADY !")
                 s = true
                 return
             }
@@ -82,7 +82,7 @@ function ajouter() {
 
         
     } else {
-        console.log("you not -18")
+        console.log("AGE MUST BE GREATER THAN 18")
     } if (s === false) {
         let obje = {
             cin: ask2,
@@ -93,27 +93,27 @@ function ajouter() {
             electeurs: []
         }
         candidats.push(obje)
-        console.log("evri think is good wlcome ")
+        console.log("OPERATION EXECUTED SUCCESFULLY !")
     }
 
 }
 
 function plusieurs() {
-    let ask8 = Number(prompt("how much candidats : "))
+    let ask8 = Number(prompt("HOW MANY CANDIDATS DO U WANT TO ADD ? : "))
     if (ask8 > 0) {
         for (let i = 0; i < ask8; i++) {
             ajouter()
         }
     } else {
-        console.log("you need mor 0")
+        console.log("PLEASE TYPE IN A VALID INPUT !")
     }
 
 }
 function afficher() {
-    console.log(`1.afficher simpel
+    console.log(`1.afficher la liste des candidats 
 2.Trier les candidats par nombre de votes (ordre décroissant pour voir les gagnants)
 3.Filtrer et afficher uniquement les candidats d'un parti politique spécifique. `)
-    let ra = Number(prompt("your choice : "))
+    let ra = Number(prompt("PLEASE CHOOSE AN OPTION : "))
     if (ra === 1) {
         for (let i = 0; i < candidats.length; i++) {
             console.log(`cin : ${candidats[i].cin}
@@ -149,92 +149,92 @@ function afficher() {
     else if (ra === 3) {
         serch()
     } else {
-        console.log("-----------that is not option------------- ")
+        console.log("-----------OUPS...! THAT'S NOT AN OPTION ! ------------- ")
     }
 }
 
 function vote() {
-    let clcin = prompt("What's your CIN : ")
+    let clcin = prompt("PLEASE ENTER YOUR CIN  : ")
     let f = false
     for (let i = 0; i < candidats.length; i++) {
         if (candidats[i].electeurs.includes(clcin)) {
-            console.log("you deja voter ")
+            console.log("YOU HAVE ALREADY VOTED YOU CAN'T DO IT AGAIN !!")
             return
         }
     }
-    let cinCandidat = prompt("CIN du candidat : ")
+    let cinCandidat = prompt("PLEASE TYPE IN YOUR CANDIDAT'S CIN : ")
     for (let i = 0; i < candidats.length; i++) {
         if (candidats[i].cin === cinCandidat) {
             f = true
             candidats[i].electeurs.push(clcin)
-            console.log("ok evri think good")
+            console.log("YOUR TASK HAS BEEN EXECUTED SUCCESFULLY !")
             return
         }
     }
     if (f === false) {
-        console.log("we dont find thats candidats")
+        console.log("OW ::( CAN'T SEEM TO FIND THIS CANDIDAT !")
     }
 
 }
 function modifi() {
-    let saak = prompt("what the cin : ")
+    let saak = prompt("PLEASE TYPE IN YOUR CIN : ")
     let d = false
     for (let i = 0; i < candidats.length; i++) {
         if (saak === candidats[i].cin) {
             d = true
             console.log(`1: Modifier le parti politique d'un candidat
 2: Modifier l'âge d'un candidat. `)
-            let saak2 = Number(prompt("your choix : "))
+            let saak2 = Number(prompt("PLEASE SELECT AN OPTION  : "))
             if (saak2 === 1) {
                 let l = true
                 let sakk = prompt("the new politique : ")
                 for (let j = 0; j < candidats.length; j++) {
                     if (candidats[j].partiPolitique === sakk) {
                         l = false
-                        console.log("that partiPolitique ol redy used")
+                        console.log("CAN'T CHANGE THE POLITIC ORIENTATION TO THE SAME ONE")
                     }
                 }
                 if (l === true) {
                     candidats[i].partiPolitique = sakk
-                    console.log(`ok MR : ${candidats[i].nom} evri thinck is good `)
+                    console.log(`OKAY MR : ${candidats[i].nom} YOUR REQUEST HAS BEEN EXECUTED SUCCESFULLY ! `)
                 }
             } else if (saak2 === 2) {
-                let saak3 = Number(prompt("your new age : "))
+                let saak3 = Number(prompt("PLEASE TYPE YOUR NEW AGE : "))
                 if (saak3 > 0) {
                     candidats[i].age = saak3
                 } else {
-                    console.log("you cant be -18")
+                    console.log("AGE MUST BE +18")
                 }
             } else {
-                console.log("-----------that is not option------------- ")
+                console.log("-----------OUPS...! THAT'S NOT AN OPTION ! ------------- ")
             }
         }
     }
     if (d === false) {
-        console.log("we dont find thats user")
+        console.log("OUPS WE CANT FIND THIS USER !")
     }
 }
 function sumprim() {
-    let sak = prompt("the cin : ")
+    let sak = prompt("PLEASE ENTER A VALID CIN  : ")
     for (let i = 0; i < candidats.length; i++) {
         if (sak === candidats[i].cin) {
-            let akse = prompt("are you chour yes/no : ")
+            let akse = prompt("SELECT AN OPTION YES/NO : ")
             if (akse === "yes") {
                 let soso = candidats[i]
                 let varu = candidats.indexOf(soso)
                 candidats.splice(varu, 1)
             } else if (aske === " no") {
-                console.loc("ok bienvenu")
+                console.loc("IT'S DONE !")
             } else {
-                console.log("that is not option just yes/no")
+                console.log("PLEASE ENTER A VALID OPTION YES/NO")
             }
         }
     }
 }
 
 function serch() {
-    let ask20 = prompt("naim : ")
-    let ask21 = prompt("prenom : ")
+    let ask20 = prompt("PLEASE TYPE IN THE FIRST NAME OF THE CANDIDAT THAT YOU WANNA LOOK FOR : ")
+    let ask21 = prompt("PLEASE TYPE IN THE LAST NAME OF THE CANDIDAT THAT YOU WANNA LOOK FOR  : ")
     let r = false
     for (let i = 0; i < candidats.length; i++) {
         if (ask20 === candidats[i].nom && ask21 === candidats[i].prenom) {
@@ -248,7 +248,7 @@ function serch() {
         }
     }
     if (r === false) {
-        console.log("we dont find that user")
+        console.log("OUPS !!! CAN'T SEEM TO FIND THIS USER")
     }
 }
 function Stati() {
@@ -257,7 +257,7 @@ function Stati() {
 3: Afficher le Top 3 des candidats ayant le plus de votes. 
 4: Afficher le nombre de candidats par parti politique`)
     let bb = 0
-    let choi = Number(prompt("your choice : "))
+    let choi = Number(prompt("PLEASE CHOOSE AN OPTION : "))
     if (choi === 1) {
         let k = 0
         for (let i = 0; i < candidats.length; i++) {
@@ -301,6 +301,6 @@ Total : ${candidats[i].electeurs.length}
         }
     }
     else {
-        console.log("thats is not option ")
+        console.log("PLEASE SELECT A VALID OPTION")
     }
 }
